@@ -3,6 +3,6 @@ lambda.js
 
 Lambda calculus in JavaScript
 
-# Install
+## Install
 
-# Usage
+## Usage
