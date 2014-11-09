@@ -20,6 +20,13 @@ System.register("../../lib/variable", [], function() {
   defineFunction(Variable.prototype, "reduce", function() {
     return this;
   });
+  defineFunction(Variable.prototype, "substitute", function(o, n) {
+    if (this.name === o) {
+      return n;
+    } else {
+      return this;
+    }
+  });
   return {};
 });
 System.get("../../lib/variable" + '');
