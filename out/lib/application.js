@@ -31,13 +31,16 @@ System.register("../../lib/application", [], function() {
     var nr = this.right.reduce();
     var nl = this.left.reduce();
     if (nl instanceof Lambda) {
-      var r = nl.body.substitude(nl.binder, nr);
+      var r = nl.body.substitute(nl.binder, nr);
       console.log(new Application(nl, nr).toString() + " → " + r.toString());
       var s = r.reduce();
       return s;
     } else {
       return new Application(nl, nr);
     }
+  });
+  defineFunction(Application.prototype, "substitute", function(o, n) {
+    return new Application(this.left.substitute(o, n), this.right.substitute(o, n));
   });
   return {};
 });
