@@ -6,6 +6,7 @@ System.register("../../lib/lambda", [], function() {
   }
   var defineFunction = require('./function');
   var Variable = require('./variable');
+  var remove = require('./remove');
   function Lambda(binder, body) {
     if (false === (this instanceof Lambda)) {
       console.log('Warning: Lambda constructor called without "new" operator');
@@ -36,6 +37,9 @@ System.register("../../lib/lambda", [], function() {
     } else {
       return new Lambda(this.binder, this.body.substitute(o, n));
     }
+  });
+  defineFunction(Lambda.prototype, "free", function() {
+    return remove(this.binder, this.body.free());
   });
   return {};
 });

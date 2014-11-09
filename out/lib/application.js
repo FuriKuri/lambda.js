@@ -6,6 +6,7 @@ System.register("../../lib/application", [], function() {
   }
   var defineFunction = require('./function');
   var Lambda = require('./lambda');
+  var remove = require('./remove');
   function Application(left, right) {
     if (false === (this instanceof Application)) {
       console.log('Warning: Application constructor called without "new" operator');
@@ -40,6 +41,9 @@ System.register("../../lib/application", [], function() {
   });
   defineFunction(Application.prototype, "substitute", function(o, n) {
     return new Application(this.left.substitute(o, n), this.right.substitute(o, n));
+  });
+  defineFunction(Application.prototype, "free", function() {
+    return this.left.free().concat(this.right.free());
   });
   return {};
 });

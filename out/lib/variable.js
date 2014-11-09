@@ -27,6 +27,9 @@ System.register("../../lib/variable", [], function() {
       return this;
     }
   });
+  defineFunction(Variable.prototype, "free", function() {
+    return [this.name];
+  });
   return {};
 });
 System.get("../../lib/variable" + '');
