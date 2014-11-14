@@ -9,8 +9,9 @@ System.register("../../lib/index", [], function() {
   var Application = require('./application');
   var id = new Lambda("x", new Variable('x'));
   console.log(id.toString());
-  var app = new Application(id, new Variable('y'));
-  console.log(app.reduce().toString());
+  console.log(new Application(id, new Variable('y')).reduce().toString());
+  console.log(new Application(new Lambda('x', new Lambda('x', new Application(new Variable('x'), new Variable('x')))), new Variable('y')).reduce().toString());
+  console.log(new Application(new Lambda('x', new Lambda('y', new Application(new Variable('x'), new Variable('y')))), new Variable('y')).reduce().toString());
   return {};
 });
 System.get("../../lib/index" + '');
